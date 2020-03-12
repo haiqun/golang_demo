@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
-	"hq_study/logagent/kafka"
-	"hq_study/logagent/tailflog"
+	"golang_demo/logagent_hq/kafka"
+	"golang_demo/logagent_hq/tailflog"
 	"time"
 )
 
