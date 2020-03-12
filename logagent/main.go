@@ -2,38 +2,56 @@ package main
 
 import (
 	"fmt"
-	"hq_study/logagent/kafka"
-	"hq_study/logagent/tailflog"
+	"golang_demo/logagent/conf"
+	"golang_demo/logagent/kafka"
+	"golang_demo/logagent/taillog"
+	"gopkg.in/ini.v1"
 	"time"
 )
 
+// logAgent入口程序
+
+var (
+	cfg = new(conf.AppConf)
+)
+
 func run() {
-	// 3 读取日志
+	// 1. 读取日志
 	for {
 		select {
-		case line := <-tailflog.ReadChan():
-			// 4 推送kafka
-			kafka.SendMsgToKafka("web_my_log", line.Text)
+		case line := <-taillog.ReadChan():
+			// 2. 发送到kafka
+			kafka.SendToKafka(cfg.KafkaConf.Topic, line.Text)
 		default:
 			time.Sleep(time.Second)
 		}
 	}
-
 }
 
-// 程序入口
 func main() {
-	// 1 初始化kafka链接
-	err := kafka.Init([]string{"127.0.0.1:9092"})
+	// 0. 加载配置文件
+	//cfg, err := ini.Load("./conf/config.ini")
+	//fmt.Println(cfg.Section("kafka").Key("address"))
+	//fmt.Println(cfg.Section("kafka").Key("topic"))
+	//fmt.Println(cfg.Section("taillog").Key("path"))
+	err := ini.MapTo(cfg, "./conf/config.ini")
 	if err != nil {
-		fmt.Printf("init kafka failed,err:%v\n", err)
+		fmt.Printf("load ini failed, err:%v\n", err)
 		return
 	}
-	// 2 打开日志文件，准备手机日志
-	err = tailflog.Init("./my.log")
+	// 1. 初始化kafka连接
+	err = kafka.Init([]string{cfg.KafkaConf.Address})
 	if err != nil {
-		fmt.Printf("init taillog failed,err:%v\n", err)
+		fmt.Printf("init Kafka failed,err:%v\n", err)
 		return
 	}
+	fmt.Println("init kafka success.")
+	// 2. 打开日志文件准备收集日志
+	err = taillog.Init(cfg.TaillogConf.FileName)
+	if err != nil {
+		fmt.Printf("Init taillog failed,err:%v\n", err)
+		return
+	}
+	fmt.Println("init taillog success.")
 	run()
 }
