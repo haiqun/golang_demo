@@ -4,13 +4,20 @@ package conf
 
 type AppConf struct {
 	KafkaConfig   `ini:"kafka"`
-	TaillogConfig `ini:"taillog"`
+	//TaillogConfig `ini:"taillog"`
+	EtcdConfig `ini:"etcd"`
 }
 
 type KafkaConfig struct {
 	Address string `ini:"address"`
-	Topic   string `ini:"topic"`
+	//Topic   string `ini:"topic"`
 }
+
+type EtcdConfig struct {
+	Endpoints string `ini:"endpoints"`
+	Timeout int `int:"timeout"`
+}
+
 
 type TaillogConfig struct {
 	Filename string `ini:"filename"`
