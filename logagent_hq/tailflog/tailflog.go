@@ -27,6 +27,6 @@ func Init(fileName string) (err error) {
 
 
 //Readlog 输出读取到的内容
-func ReadChan() <-chan *tail.Lines {
-	return <-tailObj.Lines
+func ReadChan() <-chan *tail.Line {
+	return tailObj.Lines
 }
