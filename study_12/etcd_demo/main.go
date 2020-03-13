@@ -43,7 +43,7 @@ func main() {
 	}
 	// get
 	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
-	resp, err := cli.Get(ctx, "q1mi") // 第三个参数可以设置前缀 clientv3.WithPerfix()
+	resp, err := cli.Get(ctx, "nginx_log") // 第三个参数可以设置前缀 clientv3.WithPerfix()
 	cancel()
 	if err != nil {
 		fmt.Printf("get from etcd failed, err:%v\n", err)

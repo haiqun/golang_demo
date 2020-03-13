@@ -15,6 +15,7 @@ type KafkaConfig struct {
 
 type EtcdConfig struct {
 	Endpoints string `ini:"endpoints"`
+	Key string `ini:"conllect_log_key"`
 	Timeout int `int:"timeout"`
 }
 

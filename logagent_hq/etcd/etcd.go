@@ -19,9 +19,10 @@ func Init(address string,t time.Duration)(err error)  {
 }
 
 type LogConf struct{
-	Path string `json:"path"`
-	Topic string `json:"topic"`
+	Path string `json:"path"` //日志存放的路径
+	Topic string `json:"topic"` // 日志要存放的kafka topic
 }
+
 
 func GetConf(key string)(LogConf []*LogConf ,err error)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)

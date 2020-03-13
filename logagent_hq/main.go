@@ -5,6 +5,7 @@ import (
 	"golang_demo/logagent_hq/conf"
 	"golang_demo/logagent_hq/etcd"
 	"golang_demo/logagent_hq/kafka"
+	"golang_demo/logagent_hq/tailflog"
 	"gopkg.in/ini.v1"
 	"time"
 )
@@ -17,6 +18,7 @@ var (
 func run() {
 	// 3 读取日志
 	println("ttt")
+	time.Sleep(time.Second*30)
 	//for {
 	//	select {
 	//	case line := <-tailflog.ReadChan():
@@ -56,16 +58,16 @@ func main() {
 	fmt.Println("init etcd success")
 
 	// 从etcd 中获取配置项 -》 要读哪里的路径，写到哪个topic
-	LogConf,err := etcd.GetConf("xxx")
+	LogConf,err := etcd.GetConf(cfg.EtcdConfig.Key)
 	if err != nil {
 		fmt.Printf("etcd GetConf failed,err:%v\n", err)
 	}
 	//fmt.Println(LogConf)
-	//
 	for _, i2 := range LogConf {
 		fmt.Printf("value :%v\n",*i2)
 	}
 	// 监控配置项的改变，做热启动
+	tailflog.Init(LogConf)
 	// 2 打开日志文件，准备手机日志
 	//err = tailflog.Init(cfg.TaillogConfig.Filename)
 	//if err != nil {

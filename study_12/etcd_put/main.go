@@ -35,8 +35,8 @@ func main() {
 	defer cli.Close() // 关闭连接
 	// put
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	str := `[{"path":"d:/tem/nginx.log","topic":"web_log"},{"path":"c:/tem/redis.log","topic":"redis_log"}]`
-	_, err = cli.Put(ctx, "xxx", str) // 1秒钟没返回就断开
+	str := `[{"path":"/Users/haiqunfan/work/log/nginx/error.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/m.hiii-life.com.com-access.log","topic":"m.hiii"}]`
+	_, err = cli.Put(ctx, "/logagent/collect_config", str) // 1秒钟没返回就断开
 	cancel()
 	if err != nil {
 		fmt.Printf("put to etcd failed, err:%v\n", err)
@@ -44,7 +44,7 @@ func main() {
 	}
 	// get
 	ctx, cancel = context.WithTimeout(context.Background(), time.Second)
-	resp, err := cli.Get(ctx, "xxx") // 第三个参数可以设置前缀 clientv3.WithPerfix()
+	resp, err := cli.Get(ctx, "/logagent/collect_config") // 第三个参数可以设置前缀 clientv3.WithPerfix()
 	cancel()
 	if err != nil {
 		fmt.Printf("get from etcd failed, err:%v\n", err)

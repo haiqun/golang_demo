@@ -3,12 +3,20 @@ package kafka
 import (
 	"fmt"
 	"github.com/Shopify/sarama"
+	"time"
 )
 
 // 定义全局client
 var (
 	client sarama.SyncProducer
+	chanMsg chan *msgBody
 )
+
+type msgBody struct {
+	topic string
+	msg string
+}
+
 
 // Init 实例化kafka
 func Init(addr []string) (err error) {
@@ -22,22 +30,36 @@ func Init(addr []string) (err error) {
 	if err != nil {
 		return
 	}
+	// 初始化 当前kafak的chan的空间
+	chanMsg = make(chan *msgBody,100000)
+	go SendMsgToKafka()
 	return
 }
 
-// SendMsgToKafka 发送信息到kafka
-func SendMsgToKafka(topic, str string) (err error) {
-	// 构造⼀个消息
-	msg := &sarama.ProducerMessage{}
-	msg.Topic = topic
-	msg.Value = sarama.StringEncoder(str)
-	// defer client.Close()
-	// 发送消息
-	pid, offset, err := client.SendMessage(msg)
-	if err != nil {
-		fmt.Println("send msg failed, err:", err)
-		return
+func SendMsgToChan(topic,msg string)  {
+	chanMsg <- &msgBody{
+		topic:topic,
+		msg:msg,
 	}
-	fmt.Printf("pid:%v offset:%v\n", pid, offset)
-	return
+}
+
+// SendMsgToKafka 发送信息到kafka
+func SendMsgToKafka() () {
+	// 发送消息
+	for {
+		select {
+			case data := <-chanMsg :
+				// 构造⼀个消息
+				msg := &sarama.ProducerMessage{}
+				msg.Topic = data.topic
+				msg.Value = sarama.StringEncoder(data.msg)
+				_, _, err := client.SendMessage(msg)
+				if err != nil {
+					fmt.Println("send msg failed, err:", err)
+					return
+				}
+		default:
+			time.Sleep(time.Millisecond*50)
+		}
+	}
 }
