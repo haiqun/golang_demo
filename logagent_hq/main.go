@@ -17,8 +17,8 @@ var (
 
 func run() {
 	// 3 读取日志
-	println("ttt")
-	time.Sleep(time.Second*30)
+	time.Sleep(time.Second*15)
+	println("over")
 	//for {
 	//	select {
 	//	case line := <-tailflog.ReadChan():
@@ -41,8 +41,8 @@ func main() {
 		return 
 	}
 	// fmt.Println(cfg.KafkaConfig.Address)
-	// 1 初始化kafka链接
-	err = kafka.Init([]string{cfg.KafkaConfig.Address})
+	// 1 初始化kafka链接test
+	err = kafka.Init([]{cfg.KafkaConfig.Address},cfg.KafkaConfig.MaxchanNum)
 	if err != nil {
 		fmt.Printf("init kafka failed,err:%v\n", err)
 		return
@@ -56,23 +56,22 @@ func main() {
 		return
 	}
 	fmt.Println("init etcd success")
-
 	// 从etcd 中获取配置项 -》 要读哪里的路径，写到哪个topic
 	LogConf,err := etcd.GetConf(cfg.EtcdConfig.Key)
 	if err != nil {
 		fmt.Printf("etcd GetConf failed,err:%v\n", err)
 	}
-	//fmt.Println(LogConf)
-	for _, i2 := range LogConf {
-		fmt.Printf("value :%v\n",*i2)
-	}
-	// 监控配置项的改变，做热启动
-	tailflog.Init(LogConf)
-	// 2 打开日志文件，准备手机日志
-	//err = tailflog.Init(cfg.TaillogConfig.Filename)
-	//if err != nil {
-	//	fmt.Printf("init taillog failed,err:%v\n", err)
-	//	return
+	// 打印监控的文件与推送的topic的名称
+	//go etcd.WatchConf()
+	//for _, i2 := range LogConf {
+	//	fmt.Printf("value :%v\n",*i2)
 	//}
+	// 初始化 - 开启接受变更配置的通道
+	tailflog.Init(LogConf)
+	// 获取一个对外暴露的通道
+	newChanConf := tailflog.NewConfChan()
+	// 然后监控改变的变量，推送给这个通道
+	go etcd.WatchConf(cfg.EtcdConfig.Key,newChanConf)
+
 	run()
 }

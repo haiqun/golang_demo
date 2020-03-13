@@ -19,7 +19,7 @@ type msgBody struct {
 
 
 // Init 实例化kafka
-func Init(addr []string) (err error) {
+func Init(addr []string,maxChanNum int) (err error) {
 	config := sarama.NewConfig()
 	//tailf包使⽤
 	config.Producer.RequiredAcks = sarama.WaitForAll          // 发送完数据需要leader和follow都确认
@@ -31,7 +31,7 @@ func Init(addr []string) (err error) {
 		return
 	}
 	// 初始化 当前kafak的chan的空间
-	chanMsg = make(chan *msgBody,100000)
+	chanMsg = make(chan *msgBody,maxChanNum)
 	go SendMsgToKafka()
 	return
 }

@@ -10,6 +10,7 @@ type AppConf struct {
 
 type KafkaConfig struct {
 	Address string `ini:"address"`
+	MaxchanNum int `ini:"maxchanNum"`
 	//Topic   string `ini:"topic"`
 }
 

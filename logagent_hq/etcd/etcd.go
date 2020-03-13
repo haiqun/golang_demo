@@ -24,6 +24,7 @@ type LogConf struct{
 }
 
 
+// GetConf 获取配置
 func GetConf(key string)(LogConf []*LogConf ,err error)  {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	// xxx_conf
@@ -45,4 +46,30 @@ func GetConf(key string)(LogConf []*LogConf ,err error)  {
 		//fmt.Printf("%s:%s\n", ev.Key, ev.Value)
 	}
 	return
+}
+
+// 监控配置 c chan<- []*etcd.LogConf
+func WatchConf(key string,ch chan<- []*LogConf )  {
+	rch := cli.Watch(context.Background(), key) // 返回类型 <-chan WatchResponse
+	// 尝试从通道中获取值
+	for wresp := range rch {
+		for _, ev := range wresp.Events {
+			// 如果有改变，通知 tailLogMgr
+			// 配置可能新增-修改-删除
+			// 初始化一个值，如果是删除的情况下，将改变量返回出去
+			var newConf []*LogConf
+			if  ev.Type == clientv3.EventTypeDelete{
+				
+			}else{
+				// 解压json 设置值
+				err := json.Unmarshal(ev.Kv.Value,&newConf)
+				if err != nil {
+
+				}
+			}
+			ch<- newConf
+			fmt.Println()
+			fmt.Printf("Type: %s Key:%s Value:%s\n", ev.Type, ev.Kv.Key, ev.Kv.Value)
+		}
+	}
 }
