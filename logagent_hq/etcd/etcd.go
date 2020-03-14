@@ -55,7 +55,6 @@ func WatchConf(key string,ch chan<- []*LogConf )  {
 	for wresp := range rch {
 		for _, ev := range wresp.Events {
 			// 如果有改变，通知 tailLogMgr
-			// 配置可能新增-修改-删除
 			// 初始化一个值，如果是删除的情况下，将改变量返回出去
 			var newConf []*LogConf
 			if  ev.Type == clientv3.EventTypeDelete{
@@ -64,11 +63,11 @@ func WatchConf(key string,ch chan<- []*LogConf )  {
 				// 解压json 设置值
 				err := json.Unmarshal(ev.Kv.Value,&newConf)
 				if err != nil {
-
+					fmt.Printf("json Unmarshal failed err:%s",err)
+					continue
 				}
 			}
 			ch<- newConf
-			fmt.Println()
 			fmt.Printf("Type: %s Key:%s Value:%s\n", ev.Type, ev.Kv.Key, ev.Kv.Value)
 		}
 	}

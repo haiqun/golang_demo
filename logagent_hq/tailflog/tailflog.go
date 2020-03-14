@@ -1,6 +1,7 @@
 package tailflog
 
 import (
+	"context"
 	"fmt"
 	"github.com/hpcloud/tail"
 	"golang_demo/logagent_hq/kafka"
@@ -16,14 +17,20 @@ type TailTask struct {
 	path string // 日志路径
 	topic string // 推送的topce
 	instance *tail.Tail // 通过tail 打开的文件话柄
+	// 为了让t.run的函数能给退出
+	ctx context.Context
+	cancelFunc context.CancelFunc
 }
 
 
 // NewTailMsg tecd获取的多条配置信息
 func NewTailTask(path,topic string) (tailObj *TailTask) {
+	ctx,cancel := context.WithCancel(context.Background())
 	tailObj = &TailTask{
 		path:path,
 		topic:topic,
+		ctx:ctx,
+		cancelFunc:cancel,
 	}
 	tailObj.initTailObj()
 	return
@@ -50,6 +57,10 @@ func (t *TailTask)initTailObj() () {
 func ( t *TailTask)run()  {
 	for {
 		select {
+		// 如果ctx 通知了要关闭收集的话，可以跳出
+		case <- t.ctx.Done():
+			fmt.Printf("监控文件%s退出了",t.path)
+			return
 		case line := <-t.instance.Lines:
 			// 推送到kafka的chan =》 topce , msg
 			fmt.Println(line.Text)

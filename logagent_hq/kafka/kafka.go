@@ -30,6 +30,7 @@ func Init(addr []string,maxChanNum int) (err error) {
 	if err != nil {
 		return
 	}
+	//fmt.Println(maxChanNum)
 	// 初始化 当前kafak的chan的空间
 	chanMsg = make(chan *msgBody,maxChanNum)
 	go SendMsgToKafka()
