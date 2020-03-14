@@ -50,7 +50,13 @@ func (t *tailLogMgr)run()  {
 					continue
 				}else{
 					//新增
+
 					tailObj := NewTailTask(v.Path,v.Topic)
+					logconf := &etcd.LogConf{
+						Path:  v.Path,
+						Topic: v.Topic,
+					}
+					t.logEntry = append(t.logEntry, logconf)
 					t.tskMap[v.Path] = tailObj
 				}
 				//fmt.Println(*v)

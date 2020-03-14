@@ -6,6 +6,7 @@ import (
 	"golang_demo/logagent_hq/etcd"
 	"golang_demo/logagent_hq/kafka"
 	"golang_demo/logagent_hq/tailflog"
+	"golang_demo/logagent_hq/utils"
 	"gopkg.in/ini.v1"
 	"sync"
 	"time"
@@ -58,7 +59,13 @@ func main() {
 	}
 	fmt.Println("init etcd success")
 	// 从etcd -》 获取配置项 -》 要读哪里的路径，写到哪个topic
-	LogConf,err := etcd.GetConf(cfg.EtcdConfig.Key)
+	ip_str,err  := utils.GetOutboundIP()
+	if err != nil {
+		panic("GetOutboundIP failed err")
+	}
+	ek :=  fmt.Sprintf(cfg.EtcdConfig.Key,ip_str)
+	fmt.Println(ek)
+	LogConf,err := etcd.GetConf(ek)
 	if err != nil {
 		fmt.Printf("etcd GetConf failed,err:%v\n", err)
 	}
@@ -74,7 +81,7 @@ func main() {
 	// 然后监控改变的变量，然后推送给这个通道
 	var wg sync.WaitGroup
 	wg.Add(1)
-	go etcd.WatchConf(cfg.EtcdConfig.Key,newChanConf)
+	go etcd.WatchConf(ek,newChanConf)
 	wg.Wait()
 
 }
