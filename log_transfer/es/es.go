@@ -5,12 +5,17 @@ import (
 	"github.com/olivere/elastic/v7"
 	"strings"
 	"fmt"
+	"time"
 )
 
 // 声明一个全局变量接受实例化的es链接
+type MsgData struct {
+	Index string
+	Mgs interface{}
+}
 
 var client *elastic.Client
-
+var ch = make(chan *MsgData,100000)
 // Init 实例化es的链接
 func Init(address string) (err error){
 	// 链接es
@@ -22,24 +27,28 @@ func Init(address string) (err error){
 		return
 	}
 	fmt.Println("es connect success!")
+	// 监控信息渠道
+	go sendMsg()
 	return
+}
+
+func SendToEsChan(msg *MsgData) {
+	ch <- msg
 }
 
 // SendMsg 发送信息到es
-func SendMsg(indexStr string,data interface{}) (err error) {
-	// 构造数据
-	//p1 := Person{Name: "rion", Age: 22, Married: false}
-	_, err = client.Index().Index(indexStr).BodyJson(data).Do(context.Background())
-	if err != nil {
-		// Handle error
-		//panic(err)
-		return
+func sendMsg() {
+	// 处理信息-从chan获取
+	for  {
+		select {
+		case info := <-ch:
+			// 构造数据
+			_, err := client.Index().Index(info.Index).BodyJson(info.Mgs).Do(context.Background())
+			if err != nil {
+				fmt.Printf("es sendMsg failed : %s",err)
+			}
+		default:
+			time.Sleep(time.Millisecond * 50)
+		}
 	}
-	return
-}
-
-type Person struct {
-	Name    string `json:"name"`
-	Age     int    `json:"age"`
-	Married bool   `json:"married"`
 }

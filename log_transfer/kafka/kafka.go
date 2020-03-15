@@ -14,10 +14,8 @@ type logData struct {
 	Data string `json:"data"`
 }
 
-
-
-func Init(address,topic string) (err error) {
-	consumer, err = sarama.NewConsumer([]string{address}, nil)
+func Init(address []string,topic string) (err error) {
+	consumer, err = sarama.NewConsumer(address, nil)
 	if err != nil {
 		return
 	}
@@ -52,14 +50,21 @@ func runConsumerInfo(topic string) {
 				logd := map[string]interface{}{
 					"data": string(msg.Value),
 				}
-				 err = es.SendMsg(topic,logd)
-				if err!=nil {
-					fmt.Println("es SendMsg err:",err)
-					continue
+				// 改为丢到chan中，防止函数调函数
+				info := es.MsgData{
+					Index:topic,
+					Mgs:logd,
 				}
+				es.SendToEsChan(&info)
+				//err = es.SendMsg(topic,logd)
+				//if err!=nil {
+				//	fmt.Println("es SendMsg err:",err)
+				//	continue
+				//}
 			}
 		}(pc)
 	}
+	// 这里不能退出
 	select {
 
 	}

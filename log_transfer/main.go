@@ -22,19 +22,13 @@ func main()  {
 	}
 
 	// 初始化kafka - 并监控-获取数据，推送到 es
-	err = kafka.Init(cfg.KafkaConfig.Address,cfg.KafkaConfig.Topic)
+	err = kafka.Init([]string{cfg.KafkaConfig.Address},cfg.KafkaConfig.Topic)
 	if err!=nil {
 		fmt.Println(" kafka init failed:",err)
 	}
-
 	// 将kafka的数据推送到es
-	//select {
-	//
-	//}
 	select {
-
+		
 	}
-
-
 }
 
