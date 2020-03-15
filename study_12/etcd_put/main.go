@@ -35,8 +35,8 @@ func main() {
 	defer cli.Close() // 关闭连接
 	// put
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
-	str := `[{"path":"/Users/haiqunfan/work/log/nginx/error1.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/error.log","topic":"nginx_log"}]`
-	//str := `[{"path":"/Users/haiqunfan/work/log/nginx/error1.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/error.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/m.hiii-life.com.com-access.log","topic":"m.hiii"}]`
+	//str := `[{"path":"/Users/haiqunfan/work/log/nginx/error1.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/error.log","topic":"nginx_log"}]`
+	str := `[{"path":"/Users/haiqunfan/work/log/nginx/error1.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/error.log","topic":"nginx_log"},{"path":"/Users/haiqunfan/work/log/nginx/m.hiii-life.com.com-access.log","topic":"m.hiii"}]`
 	_, err = cli.Put(ctx, "/logagent/192.168.3.8/collect_config", str) // 1秒钟没返回就断开
 	cancel()
 	if err != nil {
