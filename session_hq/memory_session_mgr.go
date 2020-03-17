@@ -1,6 +1,9 @@
 package session
 
-import "sync"
+import (
+	"errors"
+	"sync"
+)
 import uuid "github.com/satori/go.uuid"
 
 // 定义一个对象
@@ -17,7 +20,7 @@ func NewMemorySessionMgr() *MemorySessionMgr  {
 }
 
 // 内存版本的，不用连接；redis版的需要
-func (m *MemorySessionMgr)Init(address string, potions ...string)(err error)  {
+func (m *MemorySessionMgr)Init(address string, option ...string) error {
 	return
 }
 
@@ -27,6 +30,21 @@ func (m *MemorySessionMgr)CreateSession() (s Session,err error) {
 	defer m.rwlook.Unlock()
 	id := uuid.NewV4()
 	sessionId := id.String()
+	// 返回一个session对象
 	s = NewMemorySession(sessionId)
+	// 加入map记录
+	m.sessionMap[sessionId] = NewMemorySession(sessionId)
+	return
+}
+
+// 获取一个session对象
+func (m *MemorySessionMgr)Get(sessionId string)(s Session,err error)  {
+	m.rwlook.Lock()
+	defer m.rwlook.Unlock()
+	s,ok := m.sessionMap[sessionId]
+	if !ok {
+		err =  errors.New("key not exists in session")
+		return
+	}
 	return
 }

@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
+	session "golang_demo/session_hq"
 )
 
 func main() {
-	sMgr := NewMemorySessionMgr()
+	sMgr := session.NewMemorySessionMgr()
 	fmt.Println(sMgr)
 }
