@@ -17,21 +17,6 @@ var (
 	cfg = new(conf.AppConf)
 )
 
-func run() {
-	// 3 读取日志
-	time.Sleep(time.Second*15)
-	println("over")
-	//for {
-	//	select {
-	//	case line := <-tailflog.ReadChan():
-	//		// 4 推送kafka
-	//		kafka.SendMsgToKafka(cfg.KafkaConfig.Topic, line.Text)
-	//	default:
-	//		time.Sleep(time.Second)
-	//	}
-	//}
-}
-
 // 程序入口
 func main() {
 	// 0 去读配置文件 - 结构体映射方面  
