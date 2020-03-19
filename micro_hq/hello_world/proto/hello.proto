@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+message InfoRequest{
+    string name=1;
+}
+
+message InfoResponse{
+    string msg=2;
+}
+
+service Hello {
+
+    rpc Info(InfoRequest)returns(InfoResponse){}
+
+}
+
+//protoc -I . --micro_out=. --go_out=. ./hello.proto

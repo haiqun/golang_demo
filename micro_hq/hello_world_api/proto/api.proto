@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+//micro api -- headler=rpc  启动micro aip服务
+
+message CallRequest{
+    string name = 1;
+}
+
+message CallResponse{
+    string message =2;
+}
+
+service Example{
+    rpc Call(CallRequest) returns(CallResponse){}
+    rpc Call2(CallRequest) returns(CallResponse){}
+}
+
+message EmptyRequest{
+}
+
+message EmptyResponse{
+}
+
+service Foo{
+    rpc Bar(EmptyRequest) returns(EmptyResponse){}
+}
