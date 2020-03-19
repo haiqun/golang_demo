@@ -38,7 +38,7 @@ func main() {
 		c.YAML(200,gin.H{"yaml":"docker"})
 	})
 
-	// protobuf 格式 ，谷歌开发的高效的存储读取工具
+	// protobuf 格式 ，谷歌开发的一套成熟的结构数据序列化机制
 	r.GET("/someProtobuf", func(c *gin.Context) {
 		reps := []int64{int64(1), int64(2)}
 		// 定义数据
