@@ -11,6 +11,7 @@ func threeSum(nums []int) [][]int {
 			// 将两个人的值加一起，再去找第三个数
 		}
 	}
+	return [][]int{}
 }
 
 func main() {
