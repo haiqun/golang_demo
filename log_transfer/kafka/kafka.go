@@ -34,6 +34,7 @@ func runConsumerInfo(topic string) {
 	for partition := range partitionList { // 遍历所有的分区
 		// 针对每个分区创建一个对应的分区消费者
 		pc, err := consumer.ConsumePartition(topic, int32(partition), sarama.OffsetNewest)
+
 		if err != nil {
 			fmt.Printf("failed to start consumer for partition %d,err:%v\n", partition, err)
 			return
