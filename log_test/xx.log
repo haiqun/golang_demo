@@ -1,0 +1,5 @@
+[lufei]2020/03/31 09:02:12.867385 /Users/haiqunfan/work1/go_project/src/golang_demo/log_test/log_set.go:43:  lufei say:  hhhhh 
+[lufei]2020/03/31 09:03:25.469854 /Users/haiqunfan/work1/go_project/src/golang_demo/log_test/log_set.go:44: test
+[lufei]2020/03/31 09:03:25.470106 /Users/haiqunfan/work1/go_project/src/golang_demo/log_test/log_set.go:46:  lufei say:  hhhhh 
+[lufei]2020/03/31 09:03:29.921980 /Users/haiqunfan/work1/go_project/src/golang_demo/log_test/log_set.go:45:  lufei say:  hhhhh 
+<New>2020/03/31 17:15:53 log_new.go:18: 这是自定义的logger记录的日志。

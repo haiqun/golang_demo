@@ -1,0 +1,9 @@
+time="2020-03-31T17:46:26+08:00" level=info msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+
+l=fatal msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+time="2020-03-31T17:46:48+08:00" level=info msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+time="2020-03-31T17:46:57+08:00" level=fatal msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+time="2020-03-31T17:47:11+08:00" level=info msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+time="2020-03-31T17:47:31+08:00" level=info msg="Failed to send event" event="event 1111" key="key abc" topic="topic qqq"
+time="2020-03-31T17:47:31+08:00" level=info msg=message1 name=test
+time="2020-03-31T17:47:31+08:00" level=info msg=message2 name=test
