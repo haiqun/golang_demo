@@ -4,12 +4,13 @@ import (
 	"errors"
 	"sync"
 )
+
 import uuid "github.com/satori/go.uuid"
 
 // 定义一个对象
 type MemorySessionMgr struct {
 	sessionMap map[string]*MemorySession // 存来存放 session的索引
-	rwlook sync.RWMutex // 读写锁
+	rwlook sync.RWMutex                  // 读写锁
 }
 
 // 构造对象 

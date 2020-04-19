@@ -52,7 +52,7 @@ func main() {
 		return
 	}
 	for _, ev := range resp.Kvs {
-		fmt.Printf("%s:%s\n", ev.Key, ev.Value)
+		fmt.Printf("键:%s-值:%s \n", ev.Key, ev.Value)
 	}
 
 }

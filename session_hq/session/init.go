@@ -3,7 +3,7 @@ package session
 import "fmt"
 
 // 中间件让用户选择去使用哪个版本
-var sessionMgr  session_mgr
+var sessionMgr session_mgr
 
 func Init(provider string,addr string,options ...string) (err error) {
 	switch provider {

@@ -1,11 +1,11 @@
 package session
 
 import (
+	"errors"
 	"github.com/garyburd/redigo/redis"
 	uuid "github.com/satori/go.uuid"
 	"sync"
 	"time"
-	"errors"
 )
 
 type RedisSessionMgr struct {
