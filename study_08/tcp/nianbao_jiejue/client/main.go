@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
+	"golang_demo/study_08/tcp/nianbao_jiejue/proto"
 	"net"
-
-	"github.com/hq_stady/study_08/tcp/nianbao_jiejue/proto"
 )
 
 func main() {
