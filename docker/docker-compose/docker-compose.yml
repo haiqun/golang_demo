@@ -1,0 +1,13 @@
+version: 3.0
+
+services:
+  redis:
+    image: redis
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+    - 8080:5000
+    environment:
+      REDIS_HOST: redis
