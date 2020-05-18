@@ -1,4 +1,4 @@
-package logger
+package main
 
 // 级别：告警日志
 func W(interface{}, interface{}) {
