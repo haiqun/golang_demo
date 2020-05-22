@@ -1,0 +1,129 @@
+2020-05-17 10:56:16.545|application.go:initConfig:208|DEBUG|config add map[TestApp.TestAppServer.HelloObj:0xc0000d4150 TestApp.TestAppServer.SayHelloObj:0xc0000d4070]
+2020-05-17 10:56:16.545|servanthandle.go:addServantCommon:34|DEBUG|add:&{tcp 127.0.0.1:9997 0 500ms 0s 0s 0s 10m0s 0 134217728 134217728 false}
+2020-05-17 10:56:16.545|servanthandle.go:addServantCommon:34|DEBUG|add:&{tcp 127.0.0.1:9999 0 500ms 0s 0s 0s 10m0s 10000000 134217728 134217728 false}
+2020-05-17 10:56:16.545|application.go:Run:286|DEBUG|Run TestApp.TestAppServer.SayHelloObj  &{Proto:tcp Address:127.0.0.1:9997 MaxInvoke:0 AcceptTimeout:500ms ReadTimeout:0s WriteTimeout:0s HandleTimeout:0s IdleTimeout:10m0s QueueCap:0 TCPReadBuffer:134217728 TCPWriteBuffer:134217728 TCPNoDelay:false}
+2020-05-17 10:56:16.545|application.go:Run:286|DEBUG|Run AdminObj  &{Proto:tcp Address:127.0.0.1:9999 MaxInvoke:0 AcceptTimeout:500ms ReadTimeout:0s WriteTimeout:0s HandleTimeout:0s IdleTimeout:10m0s QueueCap:10000000 TCPReadBuffer:134217728 TCPWriteBuffer:134217728 TCPNoDelay:false}
+2020-05-17 10:56:16.545|tcphandler.go:(*tcpHandler).Listen:48|INFO|Listening on 127.0.0.1:9999
+2020-05-17 10:56:16.545|tcphandler.go:(*tcpHandler).Listen:48|INFO|Listening on 127.0.0.1:9997
+2020-05-17 11:12:37.028|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:61076, 94584, fd: 12
+2020-05-17 11:12:37.029|tarsprotocol.go:(*TarsProtocol).Invoke:90|ERROR|RequestID:1, Found err: func mismatch
+2020-05-17 11:12:37.030|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:61076
+2020-05-17 11:12:37.531|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:61076
+2020-05-17 11:28:56.303|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65211, 94584, fd: 13
+2020-05-17 11:28:56.304|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65211
+2020-05-17 11:28:56.808|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65211
+2020-05-17 11:34:20.748|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:50257, 94584, fd: 14
+2020-05-17 11:34:20.749|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:50257
+2020-05-17 11:34:21.252|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:50257
+2020-05-17 11:34:35.993|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:50321, 94584, fd: 15
+2020-05-17 11:34:35.994|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:50321
+2020-05-17 11:34:36.494|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:50321
+2020-05-17 11:34:44.182|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:50356, 94584, fd: 16
+2020-05-17 11:34:44.184|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:50356
+2020-05-17 11:34:44.685|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:50356
+2020-05-17 11:38:22.308|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51264, 94584, fd: 17
+2020-05-17 11:38:22.308|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51264
+2020-05-17 11:38:22.810|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51264
+2020-05-17 11:38:26.797|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51283, 94584, fd: 18
+2020-05-17 11:38:26.798|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51283
+2020-05-17 11:38:27.300|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51283
+2020-05-17 11:40:05.696|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51704, 94584, fd: 19
+2020-05-17 11:40:05.698|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51704
+2020-05-17 11:40:06.201|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51704
+2020-05-17 11:40:18.899|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51763, 94584, fd: 20
+2020-05-17 11:40:18.900|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51763
+2020-05-17 11:40:19.402|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51763
+2020-05-17 11:40:23.138|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51786, 94584, fd: 21
+2020-05-17 11:40:23.139|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51786
+2020-05-17 11:40:23.642|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51786
+2020-05-17 11:41:05.417|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:51962, 94584, fd: 22
+2020-05-17 11:41:05.418|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:51962
+2020-05-17 11:41:05.921|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:51962
+2020-05-17 11:58:53.583|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:55589, 94584, fd: 23
+2020-05-17 11:58:53.584|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:55589
+2020-05-17 11:58:54.084|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:55589
+2020-05-17 11:58:57.820|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:55608, 94584, fd: 24
+2020-05-17 11:58:57.821|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:55608
+2020-05-17 11:58:58.321|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:55608
+2020-05-17 11:59:03.153|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:55636, 94584, fd: 25
+2020-05-17 11:59:03.154|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:55636
+2020-05-17 11:59:03.658|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:55636
+2020-05-17 12:00:23.561|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:55970, 94584, fd: 26
+2020-05-17 12:00:23.562|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:55970
+2020-05-17 12:00:24.066|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:55970
+2020-05-17 12:02:57.383|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:56608, 94584, fd: 27
+2020-05-17 12:02:57.384|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:56608
+2020-05-17 12:02:57.884|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:56608
+2020-05-17 12:04:37.106|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57032, 94584, fd: 28
+2020-05-17 12:04:40.259|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57032
+2020-05-17 12:04:40.761|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57032
+2020-05-17 12:05:46.653|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57318, 94584, fd: 29
+2020-05-17 12:05:46.805|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57318
+2020-05-17 12:05:47.310|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57318
+2020-05-17 12:07:04.620|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57657, 94584, fd: 12
+2020-05-17 12:07:04.757|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57657
+2020-05-17 12:07:05.261|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57657
+2020-05-17 12:59:30.903|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:62798, 94584, fd: 12
+2020-05-17 12:59:31.073|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:62798
+2020-05-17 12:59:31.577|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:62798
+2020-05-17 12:59:43.685|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:62853, 94584, fd: 13
+2020-05-17 12:59:43.688|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:62853
+2020-05-17 12:59:44.190|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:62853
+2020-05-17 13:08:44.846|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65122, 94584, fd: 12
+2020-05-17 13:08:44.850|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65122
+2020-05-17 13:08:45.350|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65122
+2020-05-17 13:09:27.597|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65301, 94584, fd: 13
+2020-05-17 13:09:27.599|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65301
+2020-05-17 13:09:28.102|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65301
+2020-05-17 13:09:35.846|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65336, 94584, fd: 14
+2020-05-17 13:09:35.848|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65336
+2020-05-17 13:09:36.349|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65336
+2020-05-17 13:09:41.074|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65361, 94584, fd: 15
+2020-05-17 13:09:41.077|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65361
+2020-05-17 13:09:41.578|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65361
+2020-05-17 13:10:11.337|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:65496, 94584, fd: 16
+2020-05-17 13:10:11.339|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:65496
+2020-05-17 13:10:11.840|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:65496
+2020-05-17 13:12:32.941|application.go:initConfig:208|DEBUG|config add map[TestApp.TestAppServer.HelloObj:0xc000220150 TestApp.TestAppServer.SayHelloObj:0xc000220070]
+2020-05-17 13:12:32.941|servanthandle.go:addServantCommon:34|DEBUG|add:&{tcp 127.0.0.1:9997 0 500ms 0s 0s 0s 10m0s 0 134217728 134217728 false}
+2020-05-17 13:12:32.941|servanthandle.go:addServantCommon:34|DEBUG|add:&{tcp 127.0.0.1:9999 0 500ms 0s 0s 0s 10m0s 10000000 134217728 134217728 false}
+2020-05-17 13:12:32.941|application.go:Run:286|DEBUG|Run TestApp.TestAppServer.SayHelloObj  &{Proto:tcp Address:127.0.0.1:9997 MaxInvoke:0 AcceptTimeout:500ms ReadTimeout:0s WriteTimeout:0s HandleTimeout:0s IdleTimeout:10m0s QueueCap:0 TCPReadBuffer:134217728 TCPWriteBuffer:134217728 TCPNoDelay:false}
+2020-05-17 13:12:32.942|application.go:Run:286|DEBUG|Run AdminObj  &{Proto:tcp Address:127.0.0.1:9999 MaxInvoke:0 AcceptTimeout:500ms ReadTimeout:0s WriteTimeout:0s HandleTimeout:0s IdleTimeout:10m0s QueueCap:10000000 TCPReadBuffer:134217728 TCPWriteBuffer:134217728 TCPNoDelay:false}
+2020-05-17 13:12:32.942|tcphandler.go:(*tcpHandler).Listen:48|INFO|Listening on 127.0.0.1:9997
+2020-05-17 13:12:32.942|tcphandler.go:(*tcpHandler).Listen:48|INFO|Listening on 127.0.0.1:9999
+2020-05-17 13:12:36.803|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:49717, 99144, fd: 12
+2020-05-17 13:12:36.806|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:49717
+2020-05-17 13:12:37.307|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:49717
+2020-05-17 13:13:36.827|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:49967, 99144, fd: 13
+2020-05-17 13:13:36.829|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:49967
+2020-05-17 13:13:37.330|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:49967
+2020-05-17 13:14:01.085|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:50069, 99144, fd: 14
+2020-05-17 13:14:01.088|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:50069
+2020-05-17 13:14:01.588|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:50069
+2020-05-17 13:41:33.687|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57087, 99144, fd: 15
+2020-05-17 13:41:33.693|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57087
+2020-05-17 13:41:34.193|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57087
+2020-05-17 13:41:47.749|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57151, 99144, fd: 16
+2020-05-17 13:41:47.753|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57151
+2020-05-17 13:41:48.253|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57151
+2020-05-17 13:41:51.098|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57166, 99144, fd: 17
+2020-05-17 13:41:51.103|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57166
+2020-05-17 13:41:51.603|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57166
+2020-05-17 13:42:01.005|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57209, 99144, fd: 18
+2020-05-17 13:42:01.009|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57209
+2020-05-17 13:42:01.510|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57209
+2020-05-17 13:42:03.879|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57225, 99144, fd: 19
+2020-05-17 13:42:03.882|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57225
+2020-05-17 13:42:04.383|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57225
+2020-05-17 13:42:12.874|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57268, 99144, fd: 20
+2020-05-17 13:42:12.876|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57268
+2020-05-17 13:42:13.377|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57268
+2020-05-17 22:20:15.447|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57203, 99144, fd: 12
+2020-05-17 22:20:15.451|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57203
+2020-05-17 22:20:15.952|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57203
+2020-05-17 22:20:22.763|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57242, 99144, fd: 13
+2020-05-17 22:20:22.768|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57242
+2020-05-17 22:20:23.269|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57242
+2020-05-17 22:20:39.022|tcphandler.go:(*tcpHandler).Handle.func1:122|DEBUG|TCP accept: 127.0.0.1:57322, 99144, fd: 14
+2020-05-17 22:20:39.024|tcphandler.go:(*tcpHandler).recv:233|DEBUG|connection closed by remote:127.0.0.1:57322
+2020-05-17 22:20:39.526|tcphandler.go:(*tcpHandler).recv.func1:200|DEBUG|Close connection: 127.0.0.1:57322

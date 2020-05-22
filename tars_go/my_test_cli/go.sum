@@ -1,0 +1,4 @@
+github.com/TarsCloud/TarsGo v1.1.2 h1:5nT5geOchcQl91trousmokW6zAYJbr6fow8csA/XG0s=
+github.com/TarsCloud/TarsGo v1.1.2/go.mod h1:jkslu43B0kZitq9ztCH6ZM6l4rCKGkMjdqEPjHoOdjc=
+github.com/opentracing/opentracing-go v1.1.0/go.mod h1:UkNAQd3GIcIGf0SeVgPpRdFStlNbqXla1AfSYxPUl2o=
+github.com/openzipkin-contrib/zipkin-go-opentracing v0.3.5/go.mod h1:uVHyebswE1cCXr2A73cRM2frx5ld1RJUCJkFNZ90ZiI=
