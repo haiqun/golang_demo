@@ -1,9 +1,9 @@
 package main
 
 import (
-	"fmt"
 	"flag"
-"github.com/TarsCloud/TarsGo/tars"
+	"fmt"
+	"github.com/TarsCloud/TarsGo/tars"
 	"os"
 
 	"TestApp"
