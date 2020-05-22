@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/TarsCloud/TarsGo/tars"
 	"TestApp"
+	"github.com/TarsCloud/TarsGo/tars"
 )
 
 func main() { //Init servant
@@ -12,3 +12,4 @@ func main() { //Init servant
 	app.AddServant(imp, cfg.App+"."+cfg.Server+".SayHelloObj") //Register Servant
 	tars.Run()
 }
+

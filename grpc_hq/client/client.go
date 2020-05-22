@@ -5,6 +5,7 @@ import (
 	"fmt"
 	pb "golang_demo/grpc_hq/proto"
 	"google.golang.org/grpc"
+	"os"
 )
 
 // 1.连接服务端
@@ -23,11 +24,18 @@ func main() {
 	// 3.组装请求参数 - 这里的参数也是通过 proto生成的的类型
 	req := new(pb.UserRequest)
 
-	req.Name = "zs"
-	// 4. 调用接口
-	response, err := client.GetUserInfo(context.Background(), req)
-	if err != nil {
-		fmt.Printf("响应异常  %s\n", err)
+	if len(os.Args) > 1 {
+		req.Name = os.Args[1]
+	}else{
+		req.Name = "zs"
 	}
-	fmt.Printf("响应结果： %v\n", response)
+
+	// 4. 调用接口
+	for i:=0;i<10;i++ {
+		response, err := client.GetUserInfo(context.Background(), req)
+		if err != nil {
+			fmt.Printf("响应异常  %s\n", err)
+		}
+		fmt.Printf("响应结果： %v\n", response)
+	}
 }

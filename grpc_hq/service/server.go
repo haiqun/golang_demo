@@ -9,6 +9,7 @@ import (
 	"fmt"
 	pb "golang_demo/grpc_hq/proto"
 	"google.golang.org/grpc"
+	"log"
 	"net"
 )
 
@@ -22,6 +23,7 @@ var u = UserInfoService{}
 // 实现方法
 func (s *UserInfoService) GetUserInfo(ctx context.Context, req *pb.UserRequest) (resp *pb.UserResponse, err error) {
 	// 通过用户名查询用户信息
+	log.Println("请求的值：",req)
 	name := req.Name
 	// 数据里查用户信息
 	if name == "zs" {
@@ -30,6 +32,13 @@ func (s *UserInfoService) GetUserInfo(ctx context.Context, req *pb.UserRequest) 
 			Name:  name,
 			Age:   22,
 			Hobby: []string{"Sing", "Run"},
+		}
+	}else{
+		resp = &pb.UserResponse{
+			Id: 0,
+			Name: "null",
+			Age: 0,
+			Hobby: []string{""},
 		}
 	}
 	return

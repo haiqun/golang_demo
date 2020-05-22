@@ -1,4 +1,4 @@
-module golang_demo/tars_go/my_test
+module my_go/tars_go/my_test
 
 go 1.14
 

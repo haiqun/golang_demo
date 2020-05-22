@@ -1,0 +1,29 @@
+# github.com/TarsCloud/TarsGo v1.1.2
+## explicit
+github.com/TarsCloud/TarsGo/tars
+github.com/TarsCloud/TarsGo/tars/model
+github.com/TarsCloud/TarsGo/tars/protocol
+github.com/TarsCloud/TarsGo/tars/protocol/codec
+github.com/TarsCloud/TarsGo/tars/protocol/res/adminf
+github.com/TarsCloud/TarsGo/tars/protocol/res/basef
+github.com/TarsCloud/TarsGo/tars/protocol/res/configf
+github.com/TarsCloud/TarsGo/tars/protocol/res/endpointf
+github.com/TarsCloud/TarsGo/tars/protocol/res/logf
+github.com/TarsCloud/TarsGo/tars/protocol/res/nodef
+github.com/TarsCloud/TarsGo/tars/protocol/res/notifyf
+github.com/TarsCloud/TarsGo/tars/protocol/res/propertyf
+github.com/TarsCloud/TarsGo/tars/protocol/res/queryf
+github.com/TarsCloud/TarsGo/tars/protocol/res/requestf
+github.com/TarsCloud/TarsGo/tars/protocol/res/statf
+github.com/TarsCloud/TarsGo/tars/transport
+github.com/TarsCloud/TarsGo/tars/util/conf
+github.com/TarsCloud/TarsGo/tars/util/consistenthash
+github.com/TarsCloud/TarsGo/tars/util/current
+github.com/TarsCloud/TarsGo/tars/util/debug
+github.com/TarsCloud/TarsGo/tars/util/endpoint
+github.com/TarsCloud/TarsGo/tars/util/gpool
+github.com/TarsCloud/TarsGo/tars/util/grace
+github.com/TarsCloud/TarsGo/tars/util/gtime
+github.com/TarsCloud/TarsGo/tars/util/rogger
+github.com/TarsCloud/TarsGo/tars/util/rtimer
+github.com/TarsCloud/TarsGo/tars/util/tools
