@@ -11,7 +11,7 @@ func main() {
 		// 消费信息
 		a.RecieveSimple()
 	}()
-	t := time.NewTicker(time.Millisecond * 10)
+	t := time.NewTicker(time.Microsecond * 500)
 	for {
 		select {
 		// 生产信息
