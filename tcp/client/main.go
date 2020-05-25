@@ -4,7 +4,9 @@ import (
 	"crypto/tls"
 	"crypto/x509"
 	"io"
+	"io/ioutil"
 	"math/rand"
+	"os"
 	"sync"
 	"time"
 	"fmt"
@@ -68,36 +70,18 @@ func init()  {
 }
 
 func (m * tlsPoolConnInfo) createConn()  {
-	// Connecting with a custom root-certificate set.
-	const rootPEM = `
------BEGIN CERTIFICATE-----
-MIIDdDCCAlwCCQCh7qp2iYvLlDANBgkqhkiG9w0BAQsFADB7MRAwDgYDVQQIDAdm
-aHEuY29tMRAwDgYDVQQHDAdmaHEuY29tMRAwDgYDVQQKDAdmaHEuY29tMRAwDgYD
-VQQLDAdmaHEuY29tMRAwDgYDVQQDDAdmaHEuY29tMR8wHQYJKoZIhvcNAQkBFhAy
-ODExMjczNjFAcXEuY29tMCAXDTIwMDUyMzA1MDcwOVoYDzIxMjAwNDI5MDUwNzA5
-WjB7MRAwDgYDVQQIDAdmaHEuY29tMRAwDgYDVQQHDAdmaHEuY29tMRAwDgYDVQQK
-DAdmaHEuY29tMRAwDgYDVQQLDAdmaHEuY29tMRAwDgYDVQQDDAdmaHEuY29tMR8w
-HQYJKoZIhvcNAQkBFhAyODExMjczNjFAcXEuY29tMIIBIjANBgkqhkiG9w0BAQEF
-AAOCAQ8AMIIBCgKCAQEArTxy0whc51X6BW5BmadOaHaeWPFuG49aCs+IjZl/uUrz
-MHXHoA5NN78lgqyo6xlr94jUFdnRTUPzPFA+S17ZJTQ/Pry7+YVgyhDb7oPA3cm3
-y51Tb6mSNw+sju4NNBOiDFbF/NR9KJafeQ8zbzo4MJlYeDMnMyHmX1UgXgp7ddZR
-I1McBHDis9/a2+GJ2Jr8GLEUAmwxygdAjARbkIrAocbshDpjfWfNydcmtntLjSou
-UMADj3EEjrCPhWncmG6+Su/+ctCqI5oGjZhtGaf5O/0TuGb92jffTQrEdYNWGF9g
-EPfUWdhmU78AW0TSakvvtgUQ+fUt3U8+bSy+En0IqQIDAQABMA0GCSqGSIb3DQEB
-CwUAA4IBAQCX8X1rNblRcKV7fH1N243SIXcfz502589e5AarydSggGHCMU7OLwP3
-Kc6Vl7PpM9wk9E3oUQlXSKCwKyEKy7u2yntZb1mAc4yACGuJYdlItvdN6aRopsTv
-LHwV0Xv8ZKWvWEKf0nrJEZqiprKDY4ihH9rOJS7PcZq3XT/imvQKv0S3s5RCkHDP
-euNEay/jBmbaRQ//uOOx+Lq8TSFSNxy1peE2A6GLhEedIYfURL8AdAGCZNt1VQQ/
-Nj8+tl5tKnXIYbz2osoDvBLVkbsrdMClACWLV0sRczyx3zmTqsAOpx3pdK+RXRWw
-F5Q9LDgiZTBgAHXQvuOg0Clt/jFFZY0e
------END CERTIFICATE-----`
+	fileCrt := "./../server/ca.crt";
+	rootPEM := Read3(fileCrt)
+	if len(rootPEM) == 0 {
+		log.Fatalf("证书读取有误 %s",rootPEM)
+	}
 	roots := x509.NewCertPool()
 	ok := roots.AppendCertsFromPEM([]byte(rootPEM))
 	if !ok {
 		panic("failed to parse root certificate")
 	}
 	for j:=0;j<=m.maxConn;j++ {
-		conn, err := tls.Dial("tcp", "fhq.com:8888", &tls.Config{
+		conn, err := tls.Dial("tcp", "fhq.com:8999", &tls.Config{
 			RootCAs: roots,
 		})
 		if err != nil {
@@ -143,4 +127,19 @@ func RandInt(min, max int) int {
 		return max
 	}
 	return rand.Intn(max-min) + min
+}
+
+func Read3(fileName string)  (string){
+	f, err := os.Open(fileName)
+	if err != nil {
+		fmt.Println("read file fail", err)
+		return ""
+	}
+	defer f.Close()
+	fd, err := ioutil.ReadAll(f)
+	if err != nil {
+		fmt.Println("read to fd fail", err)
+		return ""
+	}
+	return string(fd)
 }
