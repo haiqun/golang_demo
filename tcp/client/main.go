@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"crypto/tls"
 	"crypto/x509"
 	"io"
@@ -34,27 +35,21 @@ func test()  {
 		select {
 		case <-ticker.C:
 			{
-				str := Krand(10,1000)
-				_, err := io.WriteString(conn, "hello"+" "+string(str))
-				if err != nil {
-					log.Fatalln(err.Error())
-				}
-				len, err := conn.Read(buf)
-				if err != nil {
-					fmt.Println(err.Error())
-				} else {
-					fmt.Println("Receive From Server:", string(buf[:len]))
-				}
-				// 执行完,换链接
+				m.send(conn)
 				conn = m.getConn()
 			}
+		case <-m.receiveChan:
+
 		}
 	}
 }
 
+
 type tlsPoolConnInfo struct {
 	maxConn int
 	conn map[int]*tls.Conn// 连接池设置
+	receiveChan chan string // 接收
+	sendChan chan string // 发送
 }
 
 var m tlsPoolConnInfo
@@ -63,6 +58,8 @@ func init()  {
 	m = tlsPoolConnInfo{
 		maxConn:20,
 		conn:make(map[int]* tls.Conn,20),
+		receiveChan:make(chan string,100),
+		sendChan:make(chan string,100),
 	}
 	m.createConn()
 }
@@ -109,6 +106,7 @@ F5Q9LDgiZTBgAHXQvuOg0Clt/jFFZY0e
 }
 
 func (m * tlsPoolConnInfo) getConn() *tls.Conn  {
+	ctx, cancel := context.WithCancel(context.Background())
 	n := RandInt(1,m.maxConn)
 	log.Println(n)
 	if len(m.conn) == 0 {
@@ -118,9 +116,47 @@ func (m * tlsPoolConnInfo) getConn() *tls.Conn  {
 	if ok {
 		return conn
 	}else{
+		// 开启接收通道
+		go m.receive(conn,ctx)
 		return  nil
 	}
 }
+
+func (m * tlsPoolConnInfo) closeConn () {
+
+}
+
+func (t *tlsPoolConnInfo)send(c *tls.Conn )  {
+	select {
+	case mgs := <-t.sendChan:
+		_, err := io.WriteString(c, "hello"+" "+mgs)
+		if err != nil {
+			log.Fatalln(err.Error())
+		}
+	}
+}
+
+func (t *tlsPoolConnInfo)receive(c *tls.Conn,ctx context.Context)  {
+	for {
+		select {
+		case <-ctx.Done():
+			return
+		default:
+			buf := make([]byte, 1024)
+			len, err := c.Read(buf)
+			msg := ""
+			if err != nil {
+				panic(err.Error())
+			} else {
+				msg = string(buf[:len])
+			}
+			t.receiveChan<- msg
+		}
+	}
+}
+
+
+
 
 // 随机字符串
 func Krand(size int, kind int) []byte {
