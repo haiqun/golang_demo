@@ -1,19 +1,23 @@
 package main
 
 import (
-	"github.com/gin-gonic/gin"
+	"fmt"
+	"os"
+	"time"
 )
 
 func main()  {
-	// 创建一个路由
-	r:=gin.Default()
-	// 定义一个get
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(200, gin.H{
-			"msg" : "hello world~",
-			"code" : 0,
-		})
-	})
 
-	r.Run(":8080")
+	quit := make(chan os.Signal)
+	t := time.NewTicker(time.Second * 3) // 每3秒钟执行一次
+	go func() {
+		for  {
+			select {
+			case <-t.C:
+				fmt.Println(time.Now().Format("15:04:05"))
+			}
+		}
+	}()
+
+	<-quit
 }

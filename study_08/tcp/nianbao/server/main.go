@@ -19,9 +19,15 @@ TCP会把接收到的数据存在自己的缓冲区中，然后通知应用层�
 当应用层由于某些原因不能及时的把TCP的数据取出来，就会造成TCP缓冲区中存放了几段数据。
 */
 
+type test struct {
+	Data string `json:"data"`
+}
+
+
 func process(conn net.Conn) {
 	defer conn.Close()
 	reader := bufio.NewReader(conn)
+
 	var buf [1024]byte
 	for {
 		n, err := reader.Read(buf[:])
