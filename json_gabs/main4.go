@@ -41,3 +41,5 @@ func main() {
 	intValue, err := val.Path("test.int").Data().(json.Number).Int64() // 10
 	fmt.Printf("%#v \n",intValue)
 }
+
+
